@@ -7,7 +7,7 @@ namespace WeatherGreeting
         private static void Main()
         {
             var greeting = new WeatherGreeting();
-            Console.WriteLine("Press Enter to keep going or any other ke to Exit");
+            Console.WriteLine("Press Enter to keep going or any other key to Exit");
 
             do
             {
