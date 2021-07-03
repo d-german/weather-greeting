@@ -7,7 +7,7 @@ namespace WeatherGreeting.Models
     /// </summary>
     public class WeatherData
     {
-        public string? Zipcode { get; set; }
+        public MapPoint? Location { get; set; }
 
         public DateTime? DateTime { get; set; }
         public double? Temperature { get; set; }
