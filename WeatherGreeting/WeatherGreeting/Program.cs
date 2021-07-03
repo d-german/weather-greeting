@@ -2,11 +2,17 @@
 
 namespace WeatherGreeting
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            Console.WriteLine("Hello World!");
+            var greeting = new WeatherGreeting();
+            Console.WriteLine("Press Enter to keep going or any other ke to Exit");
+
+            do
+            {
+                greeting.TransmitGreeting();
+            } while (Console.ReadKey().Key == ConsoleKey.Enter);
         }
     }
 }
