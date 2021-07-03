@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using WeatherGreeting.Models;
+using static WeatherGreeting.Locations;
 
 namespace WeatherGreeting.Services
 {
@@ -7,21 +8,21 @@ namespace WeatherGreeting.Services
     {
         private readonly Dictionary<string, MapPoint> _mapPoints = new Dictionary<string, MapPoint>
         {
-            ["Raymore Missouri"] = new MapPoint
+            [KansasCityMissouri] = new MapPoint
             {
-                Latitude = 38.804131,
-                Longitude = -94.452919
+                Latitude = 39.099789,
+                Longitude = -94.578560
             },
-            ["Overland Park Kansas"] = new MapPoint
+            [OverlandParkKansas] = new MapPoint
             {
                 Latitude = 38.974819,
                 Longitude = -94.683601
             }
         };
 
-        public MapPoint GetLocation(string city)
+        public MapPoint GetLocation(string location)
         {
-            return _mapPoints[city];
+            return _mapPoints[location];
         }
     }
 }
