@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using WeatherGreeting.Models;
-using static WeatherGreeting.Locations;
+using static WeatherGreeting.Constants;
 
 namespace WeatherGreeting.Services
 {

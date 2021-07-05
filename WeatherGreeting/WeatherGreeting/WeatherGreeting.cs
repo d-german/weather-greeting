@@ -1,10 +1,11 @@
 ﻿using System;
 using WeatherGreeting.Services;
+using static WeatherGreeting.Constants;
 
 namespace WeatherGreeting
 {
     /// <summary>
-    ///     Fetches the current weather, composes a greeting, then transmits the greeting
+    ///     Fetches the current weather and location, composes a greeting, then transmits the greeting
     /// </summary>
     public class WeatherGreeting
     {
@@ -27,15 +28,15 @@ namespace WeatherGreeting
                 var hour = weatherData.DateTime.Value.Hour;
                 if (hour < 12)
                 {
-                    timeOfDayGreeting = "Good morning.";
+                    timeOfDayGreeting = TimeOfDayGreetingMorning;
                 }
                 else if (hour < 16)
                 {
-                    timeOfDayGreeting = "Good after noon.";
+                    timeOfDayGreeting = TimeOfDayGreetingAfterNoon;
                 }
                 else
                 {
-                    timeOfDayGreeting = "Good evening.";
+                    timeOfDayGreeting = TimeOfDayGreetingEvening;
                 }
             }
 
@@ -45,19 +46,19 @@ namespace WeatherGreeting
                 {
                     // hot
                     case > 80:
-                        temperatureSuggestion = "It's hot out there, drink plenty of water.";
+                        temperatureSuggestion = TemperatureSuggestionHot;
                         break;
                     // Warm
                     case > 70:
-                        temperatureSuggestion = "Have fun.";
+                        temperatureSuggestion = TemperatureSuggestionWarm;
                         break;
                     // Cool
                     case > 60:
-                        temperatureSuggestion = "You will want to wear a light jacket.";
+                        temperatureSuggestion = TemperatureSuggestionCool;
                         break;
                     // Cold
                     default:
-                        temperatureSuggestion = "You will want to wear a coat.";
+                        temperatureSuggestion = TemperatureSuggestionCold;
                         break;
                 }
             }
@@ -71,11 +72,11 @@ namespace WeatherGreeting
                 {
                     if (uvIndex > 3 && uvIndex < 5)
                     {
-                        sunscreenSuggestion = "Consider wearing sunscreen.";
+                        sunscreenSuggestion = SunscreenSuggestionMedium;
                     }
                     else if (uvIndex > 5)
                     {
-                        sunscreenSuggestion = "You definitely should wear sunscreen!";
+                        sunscreenSuggestion = SunscreenSuggestionHigh;
                     }
                 }
             }

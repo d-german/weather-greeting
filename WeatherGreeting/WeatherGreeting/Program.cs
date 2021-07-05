@@ -1,5 +1,5 @@
 ﻿using System;
-using static WeatherGreeting.Locations;
+using static WeatherGreeting.Constants;
 
 namespace WeatherGreeting
 {
