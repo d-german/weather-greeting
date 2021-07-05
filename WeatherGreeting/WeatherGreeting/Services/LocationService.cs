@@ -4,7 +4,12 @@ using static WeatherGreeting.Constants;
 
 namespace WeatherGreeting.Services
 {
-    public class LocationService
+    public interface ILocationService
+    {
+        MapPoint GetLocation(string location);
+    }
+
+    public class LocationService : ILocationService
     {
         private readonly Dictionary<string, MapPoint> _mapPoints = new Dictionary<string, MapPoint>
         {

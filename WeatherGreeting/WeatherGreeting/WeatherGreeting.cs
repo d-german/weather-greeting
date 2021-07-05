@@ -9,11 +9,11 @@ namespace WeatherGreeting
     /// </summary>
     public class WeatherGreeting
     {
-        private readonly GreetingService _greetingService;
-        private readonly WeatherService _weatherService;
-        private readonly LocationService _locationService;
+        private readonly IGreetingService _greetingService;
+        private readonly IWeatherService _weatherService;
+        private readonly ILocationService _locationService;
 
-        public WeatherGreeting(GreetingService greetingService, WeatherService weatherService, LocationService locationService)
+        public WeatherGreeting(IGreetingService greetingService, IWeatherService weatherService, ILocationService locationService)
         {
             _greetingService = greetingService;
             _weatherService = weatherService;

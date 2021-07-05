@@ -4,7 +4,13 @@
     <projectFile>WeatherGreeting/WeatherGreeting.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="108918df-4982-4ae7-851c-2f2c3fd96945" name="Changes" comment="" />
+    <list default="true" id="108918df-4982-4ae7-851c-2f2c3fd96945" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WeatherGreeting/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WeatherGreeting/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WeatherGreeting/Services/GreetingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherGreeting/Services/GreetingService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WeatherGreeting/Services/LocationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherGreeting/Services/LocationService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WeatherGreeting/Services/WeatherService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherGreeting/Services/WeatherService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WeatherGreeting/WeatherGreeting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherGreeting/WeatherGreeting.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,9 +22,11 @@
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/WeatherGreetingTests/UnitTest1.cs" />
-      <option value="$PROJECT_DIR$/WeatherGreeting/WeatherGreeting.cs" />
-      <option value="$PROJECT_DIR$/WeatherGreeting/Services/WeatherService.cs" />
       <option value="$PROJECT_DIR$/WeatherGreeting/Program.cs" />
+      <option value="$PROJECT_DIR$/WeatherGreeting/Services/GreetingService.cs" />
+      <option value="$PROJECT_DIR$/WeatherGreeting/Services/LocationService.cs" />
+      <option value="$PROJECT_DIR$/WeatherGreeting/Services/WeatherService.cs" />
+      <option value="$PROJECT_DIR$/WeatherGreeting/WeatherGreeting.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1uoXSDfC3bnxPEYsbi1v1FDP5no" />
@@ -74,7 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1625332913169</updated>
       <workItem from="1625332920351" duration="2490000" />
-      <workItem from="1625516669340" duration="1550000" />
+      <workItem from="1625516669340" duration="2421000" />
     </task>
     <servers />
   </component>

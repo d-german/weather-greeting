@@ -3,7 +3,12 @@ using WeatherGreeting.Models;
 
 namespace WeatherGreeting.Services
 {
-    public class WeatherService
+    public interface IWeatherService
+    {
+        WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime);
+    }
+
+    public class WeatherService : IWeatherService
     {
         private readonly Random _randomGenerator = new Random();
 
