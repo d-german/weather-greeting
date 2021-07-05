@@ -17,25 +17,26 @@ namespace WeatherGreeting
             var mapPoint = _locationService.GetLocation(location);
             var weatherData = _weatherService.FetchWeatherData(mapPoint, DateTime.Now);
 
-            string greeting = string.Empty;
+            var timeOfDayGreeting = string.Empty;
+            var currentTemperatureGreeting = $"The current temperature is {weatherData.Temperature}";
+            var currentTemperatureSuggestion = string.Empty;
+
             if (weatherData.DateTime.HasValue)
             {
                 var hour = weatherData.DateTime.Value.Hour;
                 if (hour < 12)
                 {
-                    greeting += "Good morning.";
+                    timeOfDayGreeting = "Good morning";
                 }
                 else if (hour < 16)
                 {
-                    greeting += "Good after noon.";
+                    timeOfDayGreeting = "Good after noon";
                 }
                 else
                 {
-                    greeting += "Good evening.";
+                    timeOfDayGreeting = "Good evening";
                 }
             }
-
-            greeting += $" The current temperature is {weatherData.Temperature}";
 
             if (weatherData.Temperature.HasValue)
             {
@@ -43,24 +44,24 @@ namespace WeatherGreeting
                 {
                     // hot
                     case > 80:
-                        greeting += " It's hot out there, drink plenty of water";
+                        currentTemperatureSuggestion = "It's hot out there, drink plenty of water";
                         break;
                     // Warm
                     case > 70:
-                        greeting += " Have fun";
+                        currentTemperatureSuggestion = "Have fun";
                         break;
                     // Cool
                     case > 60:
-                        greeting += " You will want to wear a light jacket.";
+                        currentTemperatureSuggestion = "You will want to wear a light jacket";
                         break;
                     // Cold
                     default:
-                        greeting += " You will want to wear a coat.";
+                        currentTemperatureSuggestion = "You will want to wear a coat";
                         break;
                 }
             }
 
-            _greetingService.TransmitGreeting(greeting);
+            _greetingService.TransmitGreeting($"{timeOfDayGreeting}. {currentTemperatureGreeting}. {currentTemperatureSuggestion}.");
         }
     }
 }
