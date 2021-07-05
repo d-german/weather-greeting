@@ -13,10 +13,10 @@ namespace WeatherGreeting
         private readonly WeatherService _weatherService = new();
         private readonly LocationService _locationService = new();
 
-        public void TransmitGreeting(string location)
+        public void TransmitGreeting(string location, DateTime? time = null)
         {
             var mapPoint = _locationService.GetLocation(location);
-            var weatherData = _weatherService.FetchWeatherData(mapPoint, DateTime.Now);
+            var weatherData = _weatherService.FetchWeatherData(mapPoint, time ?? DateTime.Now);
 
             var timeOfDayGreeting = string.Empty;
             var temperatureStatement = $"The current temperature is {weatherData.Temperature} degrees fahrenheit.";
