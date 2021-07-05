@@ -9,9 +9,16 @@ namespace WeatherGreeting
     /// </summary>
     public class WeatherGreeting
     {
-        private readonly GreetingService _greetingService = new();
-        private readonly WeatherService _weatherService = new();
-        private readonly LocationService _locationService = new();
+        private readonly GreetingService _greetingService;
+        private readonly WeatherService _weatherService;
+        private readonly LocationService _locationService;
+
+        public WeatherGreeting(GreetingService greetingService, WeatherService weatherService, LocationService locationService)
+        {
+            _greetingService = greetingService;
+            _weatherService = weatherService;
+            _locationService = locationService;
+        }
 
         public void TransmitGreeting(string location, DateTime? time = null)
         {
