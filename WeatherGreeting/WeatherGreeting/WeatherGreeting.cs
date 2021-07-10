@@ -13,7 +13,7 @@ namespace WeatherGreeting
         private readonly WeatherService _weatherService = new();
         private readonly LocationService _locationService = new();
 
-        public void TransmitGreeting(string location, DateTime? time = null)
+        public string TransmitGreeting(string location, DateTime? time = null)
         {
             var mapPoint = _locationService.GetLocation(location);
             var weatherData = _weatherService.FetchWeatherData(mapPoint, time ?? DateTime.Now);
@@ -81,7 +81,10 @@ namespace WeatherGreeting
                 }
             }
 
-            _greetingService.TransmitGreeting($"{timeOfDayGreeting} {temperatureStatement} {temperatureSuggestion} {sunscreenSuggestion}");
+            var greeting = $"{timeOfDayGreeting} {temperatureStatement} {temperatureSuggestion} {sunscreenSuggestion}";
+
+            _greetingService.TransmitGreeting(greeting);
+            return greeting;
         }
     }
 }
