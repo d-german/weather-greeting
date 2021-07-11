@@ -52,7 +52,7 @@ namespace WeatherGreetingTests
             };
             var mockLocationService = new MockLocationService
             {
-                MockMapPoint = new MapPoint()
+                MockMapPoint = new MapPoint() // don't care can be any value
             };
 
             var mockGreetingService = new MockGreetingService();
@@ -61,9 +61,12 @@ namespace WeatherGreetingTests
 
             var actualGreeting = sut.TransmitGreeting(string.Empty, DateTime.Now);
             const string expectedGreeting = "Good morning. The current temperature is 100 degrees fahrenheit. " +
-                                            "It's hot out there, drink plenty of water. You definitely should wear sunscreen!";
+                                            "It's hot out there, drink plenty of water. " +
+                                            "You definitely should wear sunscreen!";
+            var actualGreetingServiceGreeting = mockGreetingService.MockGreeting;
 
             Assert.That(actualGreeting, Is.EqualTo(expectedGreeting));
+            Assert.That(actualGreetingServiceGreeting, Is.EqualTo(expectedGreeting));
         }
     }
 }
