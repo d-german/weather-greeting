@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using WeatherGreeting.Models;
 
 namespace WeatherGreeting.Services
@@ -9,6 +10,7 @@ namespace WeatherGreeting.Services
 
         public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
         {
+            Thread.Sleep(_randomGenerator.Next(50, 500));
             return new WeatherData
             {
                 Location = mapPoint,
