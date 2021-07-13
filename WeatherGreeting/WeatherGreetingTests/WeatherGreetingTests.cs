@@ -46,7 +46,7 @@ namespace WeatherGreetingTests
                 MockWeatherData = new WeatherData
                 {
                     Temperature = 100,
-                    DateTime = DateTime.Parse("03/01/2009 09:00:00"), //9AM
+                    DateTime = DateTime.Parse("03/01/2009 09:00:00"), // 9AM needs to be morning
                     UvIndex = 10
                 }
             };
