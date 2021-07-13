@@ -53,7 +53,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.updates" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Project.WeatherGreeting">
+  <component name="RunManager">
     <configuration name="WeatherGreeting" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
