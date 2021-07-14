@@ -38,8 +38,29 @@ namespace WeatherGreetingTests
     [TestFixture]
     public class WeatherGreetingTests
     {
+        // MorningHotLowUvIndexTest
+        // MorningHotMediumUvIndexTest
+        // MorningHotHighUvIndexTest
+        // MorningWarmLowUvIndexTest
+        // MorningWarmMediumUvIndexTest
+        // MorningWarmHighUvIndexTest
+
+        // AfterNoonHotLowUvIndexTest
+        // AfterNoonHotMediumUvIndexTest
+        // AfterNoonHotHighUvIndexTest
+        // AfterNoonWarmLowUvIndexTest
+        // AfterNoonWarmMediumUvIndexTest
+        // AfterNoonWarmHighUvIndexTest
+
+        // EveningHotLowUvIndexTest
+        // EveningHotMediumUvIndexTest
+        // EveningHotHighUvIndexTest
+        // EveningWarmLowUvIndexTest
+        // EveningWarmMediumUvIndexTest
+        // EveningWarmHighUvIndexTest
+
         [Test]
-        public void HotMorningHighUvIndexTest()
+        public void MorningHotHighUvIndexTest()
         {
             var mockWeatherService = new MockWeatherService
             {
