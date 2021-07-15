@@ -4,7 +4,9 @@
     <projectFile>WeatherGreeting/WeatherGreeting.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="108918df-4982-4ae7-851c-2f2c3fd96945" name="Changes" comment="" />
+    <list default="true" id="108918df-4982-4ae7-851c-2f2c3fd96945" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/WeatherGreetingTests/WeatherGreetingTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherGreetingTests/WeatherGreetingTests.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
