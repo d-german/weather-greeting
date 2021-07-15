@@ -27,11 +27,11 @@ namespace WeatherGreetingTests
 
     internal class MockGreetingService : IGreetingService
     {
-        internal string MockGreeting { get; set; }
+        internal string MockGreetingToVerify { get; set; }
 
         public void TransmitGreeting(string greeting)
         {
-            MockGreeting = greeting;
+            MockGreetingToVerify = greeting;
         }
     }
 
@@ -84,7 +84,7 @@ namespace WeatherGreetingTests
             const string expectedGreeting = "Good morning. The current temperature is 100 degrees fahrenheit. " +
                                             "It's hot out there, drink plenty of water. " +
                                             "You definitely should wear sunscreen!";
-            var actualGreetingServiceGreeting = mockGreetingService.MockGreeting;
+            var actualGreetingServiceGreeting = mockGreetingService.MockGreetingToVerify;
 
             Assert.That(actualGreeting, Is.EqualTo(expectedGreeting));
             Assert.That(actualGreetingServiceGreeting, Is.EqualTo(expectedGreeting));
