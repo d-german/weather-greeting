@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.Caching.Memory;
 using WeatherGreeting.Services;
 using static WeatherGreeting.Constants;
 
@@ -13,13 +14,23 @@ namespace WeatherGreeting
             Console.WriteLine($"2 for {OverlandParkKansas}");
 
             var location = Console.ReadLine() == "1" ? KansasCityMissouri : OverlandParkKansas;
-            var greeting = new WeatherGreeting(new GreetingService(), new WeatherService(), new LocationService());
+            var greeting = new WeatherGreeting(new GreetingService(),
+                ConfigureWeatherService(),
+                new LocationService());
             Console.WriteLine("Press Enter to keep going or any other key to Exit");
 
             do
             {
                 greeting.TransmitGreeting(location);
             } while (Console.ReadKey().Key == ConsoleKey.Enter);
+
+            IWeatherService ConfigureWeatherService()
+            {
+                var weatherServiceDecoratee = new WeatherService();
+                var weatherServiceCacheDecorator = new WeatherServiceCacheDecorator(weatherServiceDecoratee, new MemoryCache(new MemoryCacheOptions()));
+                var weatherServicePerformanceMonitorDecorator = new WeatherServicePerformanceMonitorDecorator(weatherServiceCacheDecorator);
+                return weatherServicePerformanceMonitorDecorator;
+            }
         }
     }
 }

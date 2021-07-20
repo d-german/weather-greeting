@@ -15,7 +15,7 @@ namespace WeatherGreeting.Services
 
         public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
         {
-            Thread.Sleep(_randomGenerator.Next(50, 500));
+            Thread.Sleep(_randomGenerator.Next(300, 500));
             return new WeatherData
             {
                 Location = mapPoint,
