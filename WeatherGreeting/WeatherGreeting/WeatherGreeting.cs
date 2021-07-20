@@ -1,4 +1,5 @@
 ﻿using System;
+using WeatherGreeting.Models;
 using WeatherGreeting.Services;
 using static WeatherGreeting.Constants;
 
@@ -30,24 +31,44 @@ namespace WeatherGreeting
             var temperatureSuggestion = string.Empty;
             var sunscreenSuggestion = string.Empty;
 
-            if (weatherData.DateTime.HasValue)
+            timeOfDayGreeting = TimeOfDayGreeting(weatherData, timeOfDayGreeting);
+
+            temperatureSuggestion = TemperatureSuggestion(weatherData, temperatureSuggestion);
+
+            sunscreenSuggestion = SunscreenSuggestion(weatherData, sunscreenSuggestion);
+
+            var greeting = $"{timeOfDayGreeting} {temperatureStatement} {temperatureSuggestion} {sunscreenSuggestion}";
+
+            _greetingService.TransmitGreeting(greeting);
+            return greeting;
+        }
+
+        private static string? SunscreenSuggestion(WeatherData? weatherData, string? sunscreenSuggestion)
+        {
+            if (weatherData != null && weatherData.Temperature.HasValue && weatherData.UvIndex.HasValue)
             {
-                var hour = weatherData.DateTime.Value.Hour;
-                if (hour < 12)
+                var temperature = weatherData.Temperature.Value;
+                var uvIndex = weatherData.UvIndex.Value;
+
+                if (temperature > 70)
                 {
-                    timeOfDayGreeting = TimeOfDayGreetingMorning;
-                }
-                else if (hour < 16)
-                {
-                    timeOfDayGreeting = TimeOfDayGreetingAfterNoon;
-                }
-                else
-                {
-                    timeOfDayGreeting = TimeOfDayGreetingEvening;
+                    if (uvIndex > 3 && uvIndex < 5)
+                    {
+                        sunscreenSuggestion = SunscreenSuggestionMedium;
+                    }
+                    else if (uvIndex > 5)
+                    {
+                        sunscreenSuggestion = SunscreenSuggestionHigh;
+                    }
                 }
             }
 
-            if (weatherData.Temperature.HasValue)
+            return sunscreenSuggestion;
+        }
+
+        private static string? TemperatureSuggestion(WeatherData? weatherData, string? temperatureSuggestion)
+        {
+            if (weatherData != null && weatherData.Temperature.HasValue)
             {
                 switch (weatherData.Temperature.Value)
                 {
@@ -70,28 +91,29 @@ namespace WeatherGreeting
                 }
             }
 
-            if (weatherData.Temperature.HasValue && weatherData.UvIndex.HasValue)
-            {
-                var temperature = weatherData.Temperature.Value;
-                var uvIndex = weatherData.UvIndex.Value;
+            return temperatureSuggestion;
+        }
 
-                if (temperature > 70)
+        private static string? TimeOfDayGreeting(WeatherData? weatherData, string? timeOfDayGreeting)
+        {
+            if (weatherData != null && weatherData.DateTime.HasValue)
+            {
+                var hour = weatherData.DateTime.Value.Hour;
+                if (hour < 12)
                 {
-                    if (uvIndex > 3 && uvIndex < 5)
-                    {
-                        sunscreenSuggestion = SunscreenSuggestionMedium;
-                    }
-                    else if (uvIndex > 5)
-                    {
-                        sunscreenSuggestion = SunscreenSuggestionHigh;
-                    }
+                    timeOfDayGreeting = TimeOfDayGreetingMorning;
+                }
+                else if (hour < 16)
+                {
+                    timeOfDayGreeting = TimeOfDayGreetingAfterNoon;
+                }
+                else
+                {
+                    timeOfDayGreeting = TimeOfDayGreetingEvening;
                 }
             }
 
-            var greeting = $"{timeOfDayGreeting} {temperatureStatement} {temperatureSuggestion} {sunscreenSuggestion}";
-
-            _greetingService.TransmitGreeting(greeting);
-            return greeting;
+            return timeOfDayGreeting;
         }
     }
 }
