@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using WeatherGreeting.Models;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -19,14 +20,14 @@ namespace WeatherGreeting.Services
                 .SetSlidingExpiration(TimeSpan.FromSeconds(1));
         }
 
-        public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
+        public async Task<WeatherData> FetchWeatherDataAsync(MapPoint mapPoint, DateTime dateTime)
         {
             if (_memoryCache.TryGetValue<WeatherData>(mapPoint, out var weatherData))
             {
                 return weatherData;
             }
 
-            _memoryCache.Set(mapPoint, _weatherServiceDecoratee.FetchWeatherData(mapPoint, dateTime), _cacheEntryOptions);
+            _memoryCache.Set(mapPoint, await _weatherServiceDecoratee.FetchWeatherDataAsync(mapPoint, dateTime), _cacheEntryOptions);
 
             return _memoryCache.Get<WeatherData>(mapPoint);
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using WeatherGreeting.Models;
 
 namespace WeatherGreeting.Services
@@ -18,10 +19,10 @@ namespace WeatherGreeting.Services
             _weatherServiceDecoratee = weatherServiceDecoratee;
         }
 
-        public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
+        public async Task<WeatherData> FetchWeatherDataAsync(MapPoint mapPoint, DateTime dateTime)
         {
             _stopwatch.Restart();
-            var weatherData = _weatherServiceDecoratee.FetchWeatherData(mapPoint, dateTime);
+            var weatherData = await _weatherServiceDecoratee.FetchWeatherDataAsync(mapPoint, dateTime);
             Console.WriteLine($"Retrieving weather data took {_stopwatch.ElapsedMilliseconds} ms.");
 
             return weatherData;

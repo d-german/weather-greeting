@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using WeatherGreeting.Models;
 
 namespace WeatherGreeting.Services
 {
     public interface IWeatherService
     {
-        WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime);
+        Task<WeatherData> FetchWeatherDataAsync(MapPoint mapPoint, DateTime dateTime);
     }
 
     public class WeatherService : IWeatherService
     {
         private readonly Random _randomGenerator = new Random();
 
-        public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
+        public Task<WeatherData> FetchWeatherDataAsync(MapPoint mapPoint, DateTime dateTime)
         {
             Thread.Sleep(_randomGenerator.Next(300, 500));
-            return new WeatherData
+            return Task.Run(() => new WeatherData
             {
                 Location = mapPoint,
                 Temperature = _randomGenerator.Next(-10, 110),
@@ -24,7 +25,8 @@ namespace WeatherGreeting.Services
                 Precipitation = _randomGenerator.Next(0, 100),
                 UvIndex = _randomGenerator.Next(0, 10),
                 DateTime = dateTime
-            };
+            });
+
         }
     }
 }
