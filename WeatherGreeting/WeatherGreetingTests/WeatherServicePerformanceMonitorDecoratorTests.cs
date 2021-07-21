@@ -27,14 +27,6 @@ namespace WeatherGreetingTests
         }
     }
 
-    internal class MockIWeatherService : IWeatherService
-    {
-        public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
-        {
-            return new WeatherData(); // don't care
-        }
-    }
-
     [TestFixture]
     public class WeatherServicePerformanceMonitorDecoratorTests
     {
@@ -50,8 +42,6 @@ namespace WeatherGreetingTests
 
             Assert.That(mockPerformanceService.MockRecordedMilliseconds, Is.EqualTo(elapsedMilliseconds));
             Assert.That(mockPerformanceService.MockRestartCalled, Is.True);
-
-
         }
     }
 }
