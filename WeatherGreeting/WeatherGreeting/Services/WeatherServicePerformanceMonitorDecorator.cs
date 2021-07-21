@@ -13,7 +13,7 @@ namespace WeatherGreeting.Services
             return _stopwatch.ElapsedMilliseconds;
         }
 
-        public void Reset()
+        public void Restart()
         {
             _stopwatch.Restart();
         }
@@ -31,8 +31,7 @@ namespace WeatherGreeting.Services
 
         public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
         {
-            //_stopwatch.Restart();
-            _performanceService.Reset();
+            _performanceService.Restart();
             var weatherData = _weatherServiceDecoratee.FetchWeatherData(mapPoint, dateTime);
             Console.WriteLine($"Retrieving weather data took {_performanceService.ElapsedMilliseconds()} ms.");
 
