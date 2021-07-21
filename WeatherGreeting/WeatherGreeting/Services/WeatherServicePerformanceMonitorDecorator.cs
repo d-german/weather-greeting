@@ -8,6 +8,11 @@ namespace WeatherGreeting.Services
     {
         public abstract long ElapsedMilliseconds();
         public abstract void Restart();
+
+        public virtual void Record(long milliseconds)
+        {
+            Console.WriteLine($"The operation tool {milliseconds}.");
+        }
     }
 
     public class PerformanceService : PerformanceServiceBase
@@ -40,7 +45,7 @@ namespace WeatherGreeting.Services
         {
             _performanceService.Restart();
             var weatherData = _weatherServiceDecoratee.FetchWeatherData(mapPoint, dateTime);
-            Console.WriteLine($"Retrieving weather data took {_performanceService.ElapsedMilliseconds()} ms.");
+            _performanceService.Record(_performanceService.ElapsedMilliseconds());
 
             return weatherData;
         }
