@@ -4,16 +4,22 @@ using WeatherGreeting.Models;
 
 namespace WeatherGreeting.Services
 {
-    public class PerformanceService
+    public abstract class PerformanceServiceBase
+    {
+        public abstract long ElapsedMilliseconds();
+        public abstract void Restart();
+    }
+
+    public class PerformanceService : PerformanceServiceBase
     {
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
-        public long ElapsedMilliseconds()
+        public override long ElapsedMilliseconds()
         {
             return _stopwatch.ElapsedMilliseconds;
         }
 
-        public void Restart()
+        public override void Restart()
         {
             _stopwatch.Restart();
         }
@@ -22,11 +28,12 @@ namespace WeatherGreeting.Services
     public class WeatherServicePerformanceMonitorDecorator : IWeatherService
     {
         private readonly IWeatherService _weatherServiceDecoratee;
-        private readonly PerformanceService _performanceService = new PerformanceService();
+        private readonly PerformanceServiceBase _performanceService;
 
-        public WeatherServicePerformanceMonitorDecorator(IWeatherService weatherServiceDecoratee)
+        public WeatherServicePerformanceMonitorDecorator(IWeatherService weatherServiceDecoratee, PerformanceServiceBase performanceService)
         {
             _weatherServiceDecoratee = weatherServiceDecoratee;
+            _performanceService = performanceService;
         }
 
         public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)

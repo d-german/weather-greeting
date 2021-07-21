@@ -28,7 +28,7 @@ namespace WeatherGreeting
             {
                 var weatherServiceDecoratee = new WeatherService();
                 var weatherServiceCacheDecorator = new WeatherServiceCacheDecorator(weatherServiceDecoratee, new MemoryCache(new MemoryCacheOptions()));
-                var weatherServicePerformanceMonitorDecorator = new WeatherServicePerformanceMonitorDecorator(weatherServiceCacheDecorator);
+                var weatherServicePerformanceMonitorDecorator = new WeatherServicePerformanceMonitorDecorator(weatherServiceCacheDecorator, new PerformanceService());
                 return weatherServicePerformanceMonitorDecorator;
             }
         }

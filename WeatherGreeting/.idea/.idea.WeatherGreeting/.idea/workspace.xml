@@ -8,7 +8,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="108918df-4982-4ae7-851c-2f2c3fd96945" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WeatherGreeting/.idea/shelf/Uncommitted_changes_before_Checkout_at_7_10_2021_3_08_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WeatherGreeting/.idea/shelf/Uncommitted_changes_before_Checkout_at_7_10_2021_3_08_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WeatherGreeting/Services/WeatherServicePerformanceMonitorDecorator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherGreeting/Services/WeatherServicePerformanceMonitorDecorator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
