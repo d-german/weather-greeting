@@ -8,7 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="108918df-4982-4ae7-851c-2f2c3fd96945" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WeatherGreeting/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WeatherGreeting/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WeatherGreeting/.idea/shelf/Uncommitted_changes_before_Checkout_at_7_10_2021_3_08_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WeatherGreeting/.idea/shelf/Uncommitted_changes_before_Checkout_at_7_10_2021_3_08_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WeatherGreeting/Services/WeatherServicePerformanceMonitorDecorator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WeatherGreeting/Services/WeatherServicePerformanceMonitorDecorator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,11 +25,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/CS236-projects/weather-greeting/WeatherGreeting/WeatherGreeting/WeatherGreeting.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/CS236-projects/weather-greeting/WeatherGreeting/WeatherGreeting/WeatherGreeting.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2e9beeb180834f4b9abea5f3db1bc8bd8f5578/3C3/Stopwatch.Windows.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/CS236-projects/weather-greeting/WeatherGreeting/WeatherGreeting/WeatherGreeting.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/CS236-projects/weather-greeting/WeatherGreeting/WeatherGreeting/WeatherGreeting.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2e9beeb180834f4b9abea5f3db1bc8bd8f5578/3C2/Stopwatch.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">

@@ -4,14 +4,25 @@ using WeatherGreeting.Models;
 
 namespace WeatherGreeting.Services
 {
+    public class PerformanceService
+    {
+        private readonly Stopwatch _stopwatch = new Stopwatch();
+
+        public long ElapsedMilliseconds()
+        {
+            return _stopwatch.ElapsedMilliseconds;
+        }
+
+        public void Reset()
+        {
+            _stopwatch.Restart();
+        }
+    }
+
     public class WeatherServicePerformanceMonitorDecorator : IWeatherService
     {
         private readonly IWeatherService _weatherServiceDecoratee;
-
-        /// <summary>
-        /// TODO: This is difficult to test, better to create a service for this and inject in via an interface
-        /// </summary>
-        private readonly Stopwatch _stopwatch = new Stopwatch();
+        private readonly PerformanceService _performanceService = new PerformanceService();
 
         public WeatherServicePerformanceMonitorDecorator(IWeatherService weatherServiceDecoratee)
         {
@@ -20,9 +31,10 @@ namespace WeatherGreeting.Services
 
         public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
         {
-            _stopwatch.Restart();
+            //_stopwatch.Restart();
+            _performanceService.Reset();
             var weatherData = _weatherServiceDecoratee.FetchWeatherData(mapPoint, dateTime);
-            Console.WriteLine($"Retrieving weather data took {_stopwatch.ElapsedMilliseconds} ms.");
+            Console.WriteLine($"Retrieving weather data took {_performanceService.ElapsedMilliseconds()} ms.");
 
             return weatherData;
         }
