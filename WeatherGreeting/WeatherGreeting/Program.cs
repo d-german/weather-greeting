@@ -10,28 +10,32 @@ namespace WeatherGreeting
     {
         private static async Task Main()
         {
-            Console.WriteLine("Choose Location");
-            Console.WriteLine($"1 for {KansasCityMissouri}");
-            Console.WriteLine($"2 for {OverlandParkKansas}");
-
-            var location = Console.ReadLine() == "1" ? KansasCityMissouri : OverlandParkKansas;
             var greeting = new WeatherGreeting(new GreetingService(),
                 ConfigureWeatherService(),
                 new LocationService());
-            Console.WriteLine("Press Enter to keep going or any other key to Exit");
 
-            do
-            {
-               await greeting.TransmitGreeting(location);
-            } while (Console.ReadKey().Key == ConsoleKey.Enter);
+            await Task.WhenAll(
+                greeting.TransmitGreeting(OverlandParkKansas),
+                greeting.TransmitGreeting(KansasCityMissouri),
+                greeting.TransmitGreeting(OverlandParkKansas),
+                greeting.TransmitGreeting(KansasCityMissouri),
+                greeting.TransmitGreeting(OverlandParkKansas),
+                greeting.TransmitGreeting(OverlandParkKansas),
+                greeting.TransmitGreeting(KansasCityMissouri),
+                greeting.TransmitGreeting(OverlandParkKansas),
+                greeting.TransmitGreeting(OverlandParkKansas),
+                greeting.TransmitGreeting(KansasCityMissouri),
+                greeting.TransmitGreeting(OverlandParkKansas),
+                greeting.TransmitGreeting(KansasCityMissouri)
+            );
+        }
 
-            IWeatherService ConfigureWeatherService()
-            {
-                var weatherServiceDecoratee = new WeatherService();
-                var weatherServiceCacheDecorator = new WeatherServiceCacheDecorator(weatherServiceDecoratee, new MemoryCache(new MemoryCacheOptions()));
-                var weatherServicePerformanceMonitorDecorator = new WeatherServicePerformanceMonitorDecorator(weatherServiceCacheDecorator);
-                return weatherServicePerformanceMonitorDecorator;
-            }
+        private static IWeatherService ConfigureWeatherService()
+        {
+            var weatherServiceDecoratee = new WeatherService();
+            var weatherServiceCacheDecorator = new WeatherServiceCacheDecorator(weatherServiceDecoratee, new MemoryCache(new MemoryCacheOptions()));
+            var weatherServicePerformanceMonitorDecorator = new WeatherServicePerformanceMonitorDecorator(weatherServiceCacheDecorator);
+            return weatherServicePerformanceMonitorDecorator;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using WeatherGreeting.Models;
 using Microsoft.Extensions.Caching.Memory;
@@ -10,6 +11,7 @@ namespace WeatherGreeting.Services
         private readonly IWeatherService _weatherServiceDecoratee;
         private readonly IMemoryCache _memoryCache;
         private readonly MemoryCacheEntryOptions _cacheEntryOptions;
+        private readonly SemaphoreSlim _cacheLock = new SemaphoreSlim(initialCount: 1, maxCount: 1);
 
         public WeatherServiceCacheDecorator(IWeatherService weatherService, IMemoryCache memoryCache)
         {
@@ -22,14 +24,26 @@ namespace WeatherGreeting.Services
 
         public async Task<WeatherData> FetchWeatherDataAsync(MapPoint mapPoint, DateTime dateTime)
         {
-            if (_memoryCache.TryGetValue<WeatherData>(mapPoint, out var weatherData))
+            await _cacheLock.WaitAsync();
+
+            try
             {
-                return weatherData;
+                if (_memoryCache.TryGetValue<WeatherData>(mapPoint, out var weatherData))
+                {
+                    Console.WriteLine("Cache Hit.");
+                    return weatherData;
+                }
+
+                Console.WriteLine("Cache Miss!");
+
+                _memoryCache.Set(mapPoint, await _weatherServiceDecoratee.FetchWeatherDataAsync(mapPoint, dateTime), _cacheEntryOptions);
+
+                return _memoryCache.Get<WeatherData>(mapPoint);
             }
-
-            _memoryCache.Set(mapPoint, await _weatherServiceDecoratee.FetchWeatherDataAsync(mapPoint, dateTime), _cacheEntryOptions);
-
-            return _memoryCache.Get<WeatherData>(mapPoint);
+            finally
+            {
+                _cacheLock.Release();
+            }
         }
     }
 }
