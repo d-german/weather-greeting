@@ -114,37 +114,5 @@ namespace WeatherGreetingTests
             Assert.That(actualGreeting, Is.EqualTo(expectedGreeting));
             Assert.That(actualGreetingServiceGreeting, Is.EqualTo(expectedGreeting));
         }
-
-
-        [Test]
-        public void MorningHotHighUvIndexTest()
-        {
-            var mockWeatherService = new MockWeatherService
-            {
-                MockWeatherData = new WeatherData
-                {
-                    Temperature = 100,
-                    DateTime = DateTime.Parse("03/01/2009 09:00:00"), // 9AM needs to be morning
-                    UvIndex = 10
-                }
-            };
-            var mockLocationService = new MockLocationService
-            {
-                MockMapPoint = new MapPoint() // don't care can be any value
-            };
-
-            var mockGreetingService = new MockGreetingService();
-
-            var sut = new WeatherGreeting.WeatherGreeting(mockGreetingService, mockWeatherService, mockLocationService);
-
-            var actualGreeting = sut.TransmitGreeting(string.Empty, DateTime.Now);
-            const string expectedGreeting = "Good morning. The current temperature is 100 degrees fahrenheit. " +
-                                            "It's hot out there, drink plenty of water. " +
-                                            "You definitely should wear sunscreen!";
-            var actualGreetingServiceGreeting = mockGreetingService.MockGreetingToVerify;
-
-            Assert.That(actualGreeting, Is.EqualTo(expectedGreeting));
-            Assert.That(actualGreetingServiceGreeting, Is.EqualTo(expectedGreeting));
-        }
     }
 }
