@@ -37,7 +37,7 @@ namespace WeatherGreeting
 
             sunscreenSuggestion = SunscreenSuggestion(weatherData, sunscreenSuggestion);
 
-            var greeting = $"{timeOfDayGreeting} {temperatureStatement} {temperatureSuggestion} {sunscreenSuggestion}";
+            var greeting = $"{timeOfDayGreeting} {temperatureStatement} {temperatureSuggestion} {sunscreenSuggestion}".Trim();
 
             _greetingService.TransmitGreeting(greeting);
             return greeting;
