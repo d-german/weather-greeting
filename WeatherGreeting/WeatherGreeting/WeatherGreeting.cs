@@ -77,7 +77,7 @@ namespace WeatherGreeting
 
                 if (temperature > 70)
                 {
-                    if (uvIndex > 3 && uvIndex < 5)
+                    if (uvIndex > 3 && uvIndex < 5) //medium
                     {
                         sunscreenSuggestion = SunscreenSuggestionMedium;
                     }
@@ -88,7 +88,7 @@ namespace WeatherGreeting
                 }
             }
 
-            var greeting = $"{timeOfDayGreeting} {temperatureStatement} {temperatureSuggestion} {sunscreenSuggestion}";
+            var greeting = $"{timeOfDayGreeting} {temperatureStatement} {temperatureSuggestion} {sunscreenSuggestion}".Trim();
 
             _greetingService.TransmitGreeting(greeting);
             return greeting;

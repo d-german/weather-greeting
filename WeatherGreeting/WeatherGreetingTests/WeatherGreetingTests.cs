@@ -54,9 +54,17 @@ namespace WeatherGreetingTests
                 Temperature = 100,
                 DateTime = DateTime.Parse("03/01/2009 09:00:00"), // 9AM needs to be morning
                 UvIndex = 1,
-                ExpectedResult = "Good morning. The current temperature is 100 degrees fahrenheit. It's hot out there, drink plenty of water. "
-            }
+                ExpectedResult = "Good morning. The current temperature is 100 degrees fahrenheit. It's hot out there, drink plenty of water."
+            },
             // MorningHotMediumUvIndexTest
+            new()
+            {
+                Temperature = 100,
+                DateTime = DateTime.Parse("03/01/2009 09:00:00"), // 9AM needs to be morning
+                UvIndex = 4,
+                ExpectedResult = "Good morning. The current temperature is 100 degrees fahrenheit. It's hot out there, drink plenty of water. Consider wearing sunscreen."
+            }
+
             // MorningHotHighUvIndexTest
             // MorningWarmLowUvIndexTest
             // MorningWarmMediumUvIndexTest
