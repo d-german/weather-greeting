@@ -2,19 +2,10 @@
 using NUnit.Framework;
 using WeatherGreeting.Models;
 using WeatherGreeting.Services;
+using WeatherGreetingTests.Services;
 
 namespace WeatherGreetingTests
 {
-    internal class MockWeatherService : IWeatherService
-    {
-        internal WeatherData MockWeatherData { get; set; }
-
-        public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
-        {
-            return MockWeatherData;
-        }
-    }
-
     internal class MockLocationService : ILocationService
     {
         internal MapPoint MockMapPoint { get; set; }

@@ -2,11 +2,6 @@
 
 namespace WeatherGreeting.Services
 {
-    public interface IGreetingService
-    {
-        void TransmitGreeting(string greeting);
-    }
-
     public class GreetingService : IGreetingService
     {
         private int _id;
