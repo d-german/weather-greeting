@@ -13,7 +13,10 @@ namespace WeatherGreeting
             Console.WriteLine($"2 for {OverlandParkKansas}");
 
             var location = Console.ReadLine() == "1" ? KansasCityMissouri : OverlandParkKansas;
-            var greeting = new WeatherGreeting(new GreetingService(), new WeatherServiceMetricsDecorator(new WeatherService()), new LocationService());
+            var greeting = new WeatherGreeting(
+                new GreetingService(),
+                new WeatherServiceMetricsDecorator(new WeatherService()),
+                new LocationService());
             Console.WriteLine("Press Enter to keep going or any other key to Exit");
 
             do
