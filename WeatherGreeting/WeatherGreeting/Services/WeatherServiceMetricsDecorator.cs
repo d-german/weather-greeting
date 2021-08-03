@@ -5,19 +5,19 @@ namespace WeatherGreeting.Services
 {
     public class WeatherServiceMetricsDecorator : IWeatherService
     {
-        private readonly IWeatherService _weatherServiceDecoratee;
+        //TODO: A private readonly field to for the decoratee
+
         public int WeatherServiceRequestCount { get; private set; }
 
         public WeatherServiceMetricsDecorator(IWeatherService weatherServiceDecoratee)
         {
-            _weatherServiceDecoratee = weatherServiceDecoratee;
+            //TODO: set the decoratee field here;
         }
 
+        //TODO: Implement the interface
         public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
         {
-            WeatherServiceRequestCount++;
-            Console.WriteLine($"Number of {nameof(IWeatherService)} requests; {WeatherServiceRequestCount}");
-            return _weatherServiceDecoratee.FetchWeatherData(mapPoint, dateTime);
+            throw new NotImplementedException();
         }
     }
 }

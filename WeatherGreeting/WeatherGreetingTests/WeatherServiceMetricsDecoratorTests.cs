@@ -12,12 +12,10 @@ namespace WeatherGreetingTests
         [Test]
         public void WeatherServiceMetricsDecoratorTest()
         {
-            var sut = new WeatherServiceMetricsDecorator(new MockWeatherService());
-            Assert.That(sut.WeatherServiceRequestCount, Is.EqualTo(0));
-            sut.FetchWeatherData(new MapPoint(), DateTime.Now);
-            Assert.That(sut.WeatherServiceRequestCount, Is.EqualTo(1));
-            sut.FetchWeatherData(new MapPoint(), DateTime.Now);
-            Assert.That(sut.WeatherServiceRequestCount, Is.EqualTo(2));
+            //TODO: uncomment and use the next line
+            // var sut = new WeatherServiceMetricsDecorator(new MockWeatherService());
+            //TODO: write tests for 0, 1, and 2 calls to FetchWeatherData()
+            // Use the WeatherServiceRequestCount property  to make the assertions.
         }
     }
 }
