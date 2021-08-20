@@ -17,7 +17,10 @@ namespace WeatherGreeting.Services
         //TODO: Implement the interface
         public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
         {
+            //TODO: remove this line or it will throw an exception
             throw new NotImplementedException();
+            // increment WeatherServiceRequestCount and print it's result to the console
+            // get the weather data then return it.
         }
     }
 }
