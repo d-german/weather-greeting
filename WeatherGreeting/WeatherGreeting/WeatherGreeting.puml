@@ -1,0 +1,8 @@
+@startuml
+class WeatherGreeting {
+    + TransmitGreeting(location:string, time:DateTime?) : string
+}
+WeatherGreeting o-> "_greetingService" GreetingService
+WeatherGreeting o-> "_weatherService" WeatherService
+WeatherGreeting o-> "_locationService" LocationService
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class WeatherData {
+    + Location : MapPoint? <<get>> <<set>>
+    + DateTime : DateTime? <<get>> <<set>>
+    + Temperature : double? <<get>> <<set>>
+    + Precipitation : double? <<get>> <<set>>
+    + Humidity : double? <<get>> <<set>>
+    + UvIndex : int? <<get>> <<set>>
+}
+@enduml

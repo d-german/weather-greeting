@@ -1,0 +1,6 @@
+@startuml
+class MapPoint {
+    + Latitude : double <<get>> <<set>>
+    + Longitude : double <<get>> <<set>>
+}
+@enduml
