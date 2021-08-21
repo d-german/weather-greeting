@@ -1,0 +1,15 @@
+@startuml
+class Constants <<static>> {
+    + <<const>> OverlandParkKansas : string = "Overland Park Kansas"
+    + <<const>> KansasCityMissouri : string = "Kansas City Missouri"
+    + <<const>> TimeOfDayGreetingMorning : string = "Good morning."
+    + <<const>> TimeOfDayGreetingAfterNoon : string = "Good after noon."
+    + <<const>> TimeOfDayGreetingEvening : string = "Good evening."
+    + <<const>> TemperatureSuggestionCold : string = "You will want to wear a coat."
+    + <<const>> TemperatureSuggestionCool : string = "You will want to wear a light jacket."
+    + <<const>> TemperatureSuggestionHot : string = "It's hot out there, drink plenty of water."
+    + <<const>> TemperatureSuggestionWarm : string = "Have fun."
+    + <<const>> SunscreenSuggestionMedium : string = "Consider wearing sunscreen."
+    + <<const>> SunscreenSuggestionHigh : string = "You definitely should wear sunscreen!"
+}
+@enduml

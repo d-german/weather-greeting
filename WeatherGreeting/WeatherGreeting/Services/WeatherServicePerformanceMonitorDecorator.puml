@@ -1,0 +1,20 @@
+@startuml
+abstract class PerformanceServiceBase {
+    + {abstract} ElapsedMilliseconds() : long
+    + {abstract} Restart() : void
+    + <<virtual>> Record(milliseconds:long) : void
+}
+class PerformanceService {
+    + <<override>> ElapsedMilliseconds() : long
+    + <<override>> Restart() : void
+}
+class WeatherServicePerformanceMonitorDecorator {
+    + WeatherServicePerformanceMonitorDecorator(weatherServiceDecoratee:IWeatherService, performanceService:PerformanceServiceBase)
+    + FetchWeatherData(mapPoint:MapPoint, dateTime:DateTime) : WeatherData
+}
+PerformanceServiceBase <|-- PerformanceService
+PerformanceService o-> "_stopwatch" Stopwatch
+IWeatherService <|-- WeatherServicePerformanceMonitorDecorator
+WeatherServicePerformanceMonitorDecorator --> "_weatherServiceDecoratee" IWeatherService
+WeatherServicePerformanceMonitorDecorator --> "_performanceService" PerformanceServiceBase
+@enduml

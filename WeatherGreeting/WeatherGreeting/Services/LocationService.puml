@@ -1,0 +1,12 @@
+@startuml
+interface ILocationService {
+    GetLocation(location:string) : MapPoint
+}
+class LocationService {
+    + GetLocation(location:string) : MapPoint
+}
+class "Dictionary`2"<T1,T2> {
+}
+ILocationService <|-- LocationService
+LocationService o-> "_mapPoints<string,MapPoint>" "Dictionary`2"
+@enduml

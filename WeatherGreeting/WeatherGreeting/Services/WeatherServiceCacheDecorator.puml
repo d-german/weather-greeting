@@ -1,0 +1,10 @@
+@startuml
+class WeatherServiceCacheDecorator {
+    + WeatherServiceCacheDecorator(weatherService:IWeatherService, memoryCache:IMemoryCache)
+    + FetchWeatherData(mapPoint:MapPoint, dateTime:DateTime) : WeatherData
+}
+IWeatherService <|-- WeatherServiceCacheDecorator
+WeatherServiceCacheDecorator --> "_weatherServiceDecoratee" IWeatherService
+WeatherServiceCacheDecorator --> "_memoryCache" IMemoryCache
+WeatherServiceCacheDecorator --> "_cacheEntryOptions" MemoryCacheEntryOptions
+@enduml

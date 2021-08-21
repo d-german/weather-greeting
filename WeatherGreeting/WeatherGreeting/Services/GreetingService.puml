@@ -1,0 +1,10 @@
+@startuml
+interface IGreetingService {
+    TransmitGreeting(greeting:string) : void
+}
+class GreetingService {
+    - _id : int
+    + TransmitGreeting(greeting:string) : void
+}
+IGreetingService <|-- GreetingService
+@enduml

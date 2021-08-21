@@ -1,0 +1,10 @@
+@startuml
+interface IWeatherService {
+    FetchWeatherData(mapPoint:MapPoint, dateTime:DateTime) : WeatherData
+}
+class WeatherService {
+    + FetchWeatherData(mapPoint:MapPoint, dateTime:DateTime) : WeatherData
+}
+IWeatherService <|-- WeatherService
+WeatherService o-> "_randomGenerator" Random
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class WeatherGreeting {
+    + WeatherGreeting(greetingService:IGreetingService, weatherService:IWeatherService, locationService:ILocationService)
+    + TransmitGreeting(location:string, time:DateTime?) : string
+    - {static} SunscreenSuggestion(weatherData:WeatherData?, sunscreenSuggestion:string?) : string?
+    - {static} TemperatureSuggestion(weatherData:WeatherData?, temperatureSuggestion:string?) : string?
+    - {static} TimeOfDayGreeting(weatherData:WeatherData?, timeOfDayGreeting:string?) : string?
+}
+WeatherGreeting --> "_greetingService" IGreetingService
+WeatherGreeting --> "_weatherService" IWeatherService
+WeatherGreeting --> "_locationService" ILocationService
+@enduml
