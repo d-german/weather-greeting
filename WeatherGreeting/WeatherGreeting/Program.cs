@@ -28,8 +28,7 @@ namespace WeatherGreeting
             static IWeatherService ConfigureWeatherService()
             {
                 var weatherServiceDecoratee = new WeatherService();
-                var weatherServiceCacheDecorator = new WeatherServiceCacheDecorator(weatherServiceDecoratee, new MemoryCache(new MemoryCacheOptions()));
-                var weatherServicePerformanceMonitorDecorator = new WeatherServicePerformanceMonitorDecorator(weatherServiceCacheDecorator);
+                var weatherServicePerformanceMonitorDecorator = new WeatherServicePerformanceMonitorDecorator(weatherServiceDecoratee);
                 return weatherServicePerformanceMonitorDecorator;
             }
         }
