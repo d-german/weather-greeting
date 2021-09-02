@@ -40,11 +40,11 @@ namespace WeatherGreeting
             return greeting;
         }
 
-        private static string? SunscreenSuggestion(WeatherData? weatherData)
+        private static string SunscreenSuggestion(WeatherData weatherData)
         {
             var sunscreenSuggestion = string.Empty;
 
-            if (weatherData != null && weatherData.Temperature.HasValue && weatherData.UvIndex.HasValue)
+            if (weatherData.Temperature.HasValue && weatherData.UvIndex.HasValue)
             {
                 var temperature = weatherData.Temperature.Value;
                 var uvIndex = weatherData.UvIndex.Value;
@@ -65,11 +65,11 @@ namespace WeatherGreeting
             return sunscreenSuggestion;
         }
 
-        private static string? TemperatureSuggestion(WeatherData? weatherData)
+        private static string TemperatureSuggestion(WeatherData weatherData)
         {
             var temperatureSuggestion = string.Empty;
 
-            if (weatherData != null && weatherData.Temperature.HasValue)
+            if (weatherData.Temperature.HasValue)
             {
                 switch (weatherData.Temperature.Value)
                 {
@@ -95,11 +95,11 @@ namespace WeatherGreeting
             return temperatureSuggestion;
         }
 
-        private static string? TimeOfDayGreeting(WeatherData? weatherData)
+        private static string TimeOfDayGreeting(WeatherData weatherData)
         {
             var timeOfDayGreeting = string.Empty;
 
-            if (weatherData != null && weatherData.DateTime.HasValue)
+            if (weatherData.DateTime.HasValue)
             {
                 var hour = weatherData.DateTime.Value.Hour;
                 if (hour < 12)
