@@ -26,16 +26,13 @@ namespace WeatherGreeting
             var mapPoint = _locationService.GetLocation(location);
             var weatherData = _weatherService.FetchWeatherData(mapPoint, time ?? DateTime.Now);
 
-            var timeOfDayGreeting = string.Empty;
             var temperatureStatement = $"The current temperature is {weatherData.Temperature} degrees fahrenheit.";
-            var temperatureSuggestion = string.Empty;
-            var sunscreenSuggestion = string.Empty;
 
-            timeOfDayGreeting = TimeOfDayGreeting(weatherData, timeOfDayGreeting);
+            var timeOfDayGreeting = TimeOfDayGreeting(weatherData);
 
-            temperatureSuggestion = TemperatureSuggestion(weatherData, temperatureSuggestion);
+            var temperatureSuggestion = TemperatureSuggestion(weatherData);
 
-            sunscreenSuggestion = SunscreenSuggestion(weatherData, sunscreenSuggestion);
+            var sunscreenSuggestion = SunscreenSuggestion(weatherData);
 
             var greeting = $"{timeOfDayGreeting} {temperatureStatement} {temperatureSuggestion} {sunscreenSuggestion}".Trim();
 
@@ -43,9 +40,11 @@ namespace WeatherGreeting
             return greeting;
         }
 
-        private static string? SunscreenSuggestion(WeatherData? weatherData, string? sunscreenSuggestion)
+        private static string SunscreenSuggestion(WeatherData weatherData)
         {
-            if (weatherData != null && weatherData.Temperature.HasValue && weatherData.UvIndex.HasValue)
+            var sunscreenSuggestion = string.Empty;
+
+            if (weatherData.Temperature.HasValue && weatherData.UvIndex.HasValue)
             {
                 var temperature = weatherData.Temperature.Value;
                 var uvIndex = weatherData.UvIndex.Value;
@@ -66,9 +65,11 @@ namespace WeatherGreeting
             return sunscreenSuggestion;
         }
 
-        private static string? TemperatureSuggestion(WeatherData? weatherData, string? temperatureSuggestion)
+        private static string TemperatureSuggestion(WeatherData weatherData)
         {
-            if (weatherData != null && weatherData.Temperature.HasValue)
+            var temperatureSuggestion = string.Empty;
+
+            if (weatherData.Temperature.HasValue)
             {
                 switch (weatherData.Temperature.Value)
                 {
@@ -94,9 +95,11 @@ namespace WeatherGreeting
             return temperatureSuggestion;
         }
 
-        private static string? TimeOfDayGreeting(WeatherData? weatherData, string? timeOfDayGreeting)
+        private static string TimeOfDayGreeting(WeatherData weatherData)
         {
-            if (weatherData != null && weatherData.DateTime.HasValue)
+            var timeOfDayGreeting = string.Empty;
+
+            if (weatherData.DateTime.HasValue)
             {
                 var hour = weatherData.DateTime.Value.Hour;
                 if (hour < 12)
