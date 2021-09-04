@@ -3,14 +3,14 @@ using static WeatherGreeting.Constants;
 
 namespace WeatherGreeting
 {
-    public interface ITemperatureSuggestion
+    public abstract class TemperatureSuggestionBase
     {
-        string GetTemperatureSuggestion(WeatherData weatherData);
+        public abstract string GetTemperatureSuggestion(WeatherData weatherData);
     }
 
-    public class TemperatureSuggestion : ITemperatureSuggestion
+    public class TemperatureSuggestion : TemperatureSuggestionBase
     {
-        public string GetTemperatureSuggestion(WeatherData weatherData)
+        public override string GetTemperatureSuggestion(WeatherData weatherData)
         {
             var temperatureSuggestion = string.Empty;
 
@@ -20,7 +20,7 @@ namespace WeatherGreeting
                 {
                     // hot
                     case > 80:
-                        temperatureSuggestion = TemperatureSuggestionHot ;
+                        temperatureSuggestion = TemperatureSuggestionHot;
                         break;
                     // Warm
                     case > 70:

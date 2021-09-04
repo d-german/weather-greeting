@@ -13,18 +13,18 @@ namespace WeatherGreeting
         private readonly IGreetingService _greetingService;
         private readonly IWeatherService _weatherService;
         private readonly ILocationService _locationService;
-        private readonly ITemperatureSuggestion _temperatureSuggestion;
+        private readonly TemperatureSuggestionBase _temperatureSuggestionBase;
 
         public WeatherGreetingFacade(
             IGreetingService greetingService,
             IWeatherService weatherService,
             ILocationService locationService,
-            ITemperatureSuggestion temperatureSuggestion)
+            TemperatureSuggestionBase temperatureSuggestionBase)
         {
             _greetingService = greetingService;
             _weatherService = weatherService;
             _locationService = locationService;
-            _temperatureSuggestion = temperatureSuggestion;
+            _temperatureSuggestionBase = temperatureSuggestionBase;
         }
 
         public string TransmitGreeting(string location, DateTime? time = null)
@@ -36,7 +36,7 @@ namespace WeatherGreeting
 
             var timeOfDayGreeting = TimeOfDayGreeting(weatherData);
 
-            var temperatureSuggestion = _temperatureSuggestion.GetTemperatureSuggestion(weatherData);
+            var temperatureSuggestion = _temperatureSuggestionBase.GetTemperatureSuggestion(weatherData);
 
             var sunscreenSuggestion = SunscreenSuggestion(weatherData);
 
