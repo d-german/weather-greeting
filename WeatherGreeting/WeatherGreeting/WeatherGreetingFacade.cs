@@ -8,17 +8,23 @@ namespace WeatherGreeting
     /// <summary>
     ///     Fetches the current weather and location, composes a greeting, then transmits the greeting
     /// </summary>
-    public class WeatherGreeting
+    public class WeatherGreetingFacade
     {
         private readonly IGreetingService _greetingService;
         private readonly IWeatherService _weatherService;
         private readonly ILocationService _locationService;
+        private readonly ITemperatureSuggestion _temperatureSuggestion;
 
-        public WeatherGreeting(IGreetingService greetingService, IWeatherService weatherService, ILocationService locationService)
+        public WeatherGreetingFacade(
+            IGreetingService greetingService,
+            IWeatherService weatherService,
+            ILocationService locationService,
+            ITemperatureSuggestion temperatureSuggestion)
         {
             _greetingService = greetingService;
             _weatherService = weatherService;
             _locationService = locationService;
+            _temperatureSuggestion = temperatureSuggestion;
         }
 
         public string TransmitGreeting(string location, DateTime? time = null)
@@ -30,7 +36,7 @@ namespace WeatherGreeting
 
             var timeOfDayGreeting = TimeOfDayGreeting(weatherData);
 
-            var temperatureSuggestion = TemperatureSuggestion(weatherData);
+            var temperatureSuggestion = _temperatureSuggestion.GetTemperatureSuggestion(weatherData);
 
             var sunscreenSuggestion = SunscreenSuggestion(weatherData);
 
@@ -63,36 +69,6 @@ namespace WeatherGreeting
             }
 
             return sunscreenSuggestion;
-        }
-
-        private static string TemperatureSuggestion(WeatherData weatherData)
-        {
-            var temperatureSuggestion = string.Empty;
-
-            if (weatherData.Temperature.HasValue)
-            {
-                switch (weatherData.Temperature.Value)
-                {
-                    // hot
-                    case > 80:
-                        temperatureSuggestion = TemperatureSuggestionHot;
-                        break;
-                    // Warm
-                    case > 70:
-                        temperatureSuggestion = TemperatureSuggestionWarm;
-                        break;
-                    // Cool
-                    case > 60:
-                        temperatureSuggestion = TemperatureSuggestionCool;
-                        break;
-                    // Cold
-                    default:
-                        temperatureSuggestion = TemperatureSuggestionCold;
-                        break;
-                }
-            }
-
-            return temperatureSuggestion;
         }
 
         private static string TimeOfDayGreeting(WeatherData weatherData)

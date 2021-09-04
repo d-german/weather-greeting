@@ -78,7 +78,7 @@ namespace WeatherGreetingTests
 
             var mockGreetingService = new MockGreetingService();
 
-            var sut = new WeatherGreeting.WeatherGreeting(mockGreetingService, mockWeatherService, mockLocationService);
+            var sut = new WeatherGreeting.WeatherGreetingFacade(mockGreetingService, mockWeatherService, mockLocationService, null); //TODO: fix this
 
             var actualGreeting = sut.TransmitGreeting(string.Empty, DateTime.Now);
             const string expectedGreeting = "Good morning. The current temperature is 100 degrees fahrenheit. " +
