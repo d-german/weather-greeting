@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Moq;
 using NUnit.Framework;
 using WeatherGreeting.Models;
 using WeatherGreeting.Services;
@@ -77,7 +78,7 @@ namespace WeatherGreetingTests
             };
             var mockLocationService = new MockLocationService
             {
-                MockMapPoint = new MapPoint() // don't care can be any value
+                MockMapPoint = It.IsAny<MapPoint>()
             };
 
             var mockGreetingService = new MockGreetingService();
