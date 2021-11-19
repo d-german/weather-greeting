@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using WeatherGreeting.Models;
 using WeatherGreeting.Services;
@@ -9,9 +10,12 @@ namespace WeatherGreetingTests
     {
         internal WeatherData MockWeatherData { get; set; }
 
-        public WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
+        public Task<WeatherData> FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
         {
-            return MockWeatherData;
+           return Task.Run(() =>
+            {
+                return MockWeatherData;
+            });
         }
     }
 
@@ -60,7 +64,7 @@ namespace WeatherGreetingTests
         // EveningWarmHighUvIndexTest
 
         [Test]
-        public void MorningHotHighUvIndexTest()
+        public async Task MorningHotHighUvIndexTest()
         {
             var mockWeatherService = new MockWeatherService
             {
@@ -80,7 +84,7 @@ namespace WeatherGreetingTests
 
             var sut = new WeatherGreeting.WeatherGreeting(mockGreetingService, mockWeatherService, mockLocationService);
 
-            var actualGreeting = sut.TransmitGreeting(string.Empty, DateTime.Now);
+            var actualGreeting = await sut.TransmitGreeting(string.Empty, DateTime.Now);
             const string expectedGreeting = "Good morning. The current temperature is 100 degrees fahrenheit. " +
                                             "It's hot out there, drink plenty of water. " +
                                             "You definitely should wear sunscreen!";

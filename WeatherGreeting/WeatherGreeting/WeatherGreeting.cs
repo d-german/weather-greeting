@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using WeatherGreeting.Models;
 using WeatherGreeting.Services;
 using static WeatherGreeting.Constants;
@@ -21,10 +22,10 @@ namespace WeatherGreeting
             _locationService = locationService;
         }
 
-        public string TransmitGreeting(string location, DateTime? time = null)
+        public async Task<string> TransmitGreeting(string location, DateTime? time = null)
         {
             var mapPoint = _locationService.GetLocation(location);
-            var weatherData = _weatherService.FetchWeatherData(mapPoint, time ?? DateTime.Now);
+            var weatherData = await _weatherService.FetchWeatherData(mapPoint, time ?? DateTime.Now);
 
             var temperatureStatement = $"The current temperature is {weatherData.Temperature} degrees fahrenheit.";
 

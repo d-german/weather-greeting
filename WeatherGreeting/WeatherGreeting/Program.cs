@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using WeatherGreeting.Services;
 using static WeatherGreeting.Constants;
 
@@ -6,7 +7,7 @@ namespace WeatherGreeting
 {
     internal static class Program
     {
-        private static void Main()
+        private static async Task Main()
         {
             Console.WriteLine("Choose Location");
             Console.WriteLine($"1 for {KansasCityMissouri}");
@@ -18,7 +19,7 @@ namespace WeatherGreeting
 
             do
             {
-                greeting.TransmitGreeting(location);
+                await greeting.TransmitGreeting(location);
             } while (Console.ReadKey().Key == ConsoleKey.Enter);
         }
     }
