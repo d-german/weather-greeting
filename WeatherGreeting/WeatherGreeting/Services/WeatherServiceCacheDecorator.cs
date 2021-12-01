@@ -23,10 +23,13 @@ namespace WeatherGreeting.Services
         {
             if (_memoryCache.TryGetValue<WeatherData>(mapPoint, out var weatherData))
             {
+                Console.WriteLine("cache hit!");
                 return weatherData;
             }
 
             _memoryCache.Set(mapPoint, _weatherServiceDecoratee.FetchWeatherData(mapPoint, dateTime), _cacheEntryOptions);
+
+            Console.WriteLine("cache miss!");
 
             return _memoryCache.Get<WeatherData>(mapPoint);
         }
