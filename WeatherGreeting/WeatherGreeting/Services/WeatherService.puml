@@ -1,6 +1,0 @@
-@startuml
-class WeatherService {
-    + FetchWeatherData(mapPoint:MapPoint, dateTime:DateTime) : WeatherData
-}
-WeatherService o-> "_randomGenerator" Random
-@enduml

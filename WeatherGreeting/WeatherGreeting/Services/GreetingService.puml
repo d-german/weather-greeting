@@ -1,6 +1,0 @@
-@startuml
-class GreetingService {
-    - _id : int
-    + TransmitGreeting(greeting:string) : void
-}
-@enduml

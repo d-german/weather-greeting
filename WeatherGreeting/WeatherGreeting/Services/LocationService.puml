@@ -1,8 +1,0 @@
-@startuml
-class LocationService {
-    + GetLocation(location:string) : MapPoint
-}
-class "Dictionary`2"<T1,T2> {
-}
-LocationService o-> "_mapPoints<string,MapPoint>" "Dictionary`2"
-@enduml
