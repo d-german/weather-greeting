@@ -2,7 +2,15 @@
 class WeatherGreeting {
     + TransmitGreeting(location:string, time:DateTime?) : string
 }
-WeatherGreeting o-> "_greetingService" GreetingService
-WeatherGreeting o-> "_weatherService" WeatherService
-WeatherGreeting o-> "_locationService" LocationService
+
+class GreetingService {
++ TransmitGreeting(greeting: string)
+}
+
+class WeatherService {
++ FetchWeatherData(mapPoint: MapPoint, dateTime: DateTime):WeatherData
+}
+WeatherGreeting *--> GreetingService
+WeatherGreeting *--> WeatherService
+WeatherGreeting *--> LocationService
 @enduml
