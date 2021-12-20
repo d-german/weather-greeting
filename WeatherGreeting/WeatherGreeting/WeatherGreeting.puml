@@ -2,17 +2,29 @@
 !theme crt-green
 
 class WeatherGreeting {
+    - _greetingService: IGreetingService
+    - _weatherService: IWeatherService
+    - _locationService: ILocationService
     + TransmitGreeting(location:string, time:DateTime?) : string
 }
 
-class GreetingService {
+interface IGreetingService {
 + TransmitGreeting(greeting: string)
 }
 
-class WeatherService {
+interface IWeatherService {
 + FetchWeatherData(mapPoint: MapPoint, dateTime: DateTime):WeatherData
 }
-WeatherGreeting *---> GreetingService
-WeatherGreeting *---> WeatherService
-WeatherGreeting *---> LocationService
+
+interface ILocationService {
++ GetLocation(location: string): MapPoint
+}
+
+WeatherGreeting o--- IGreetingService : aggregation
+WeatherGreeting o--- IWeatherService : aggregation
+WeatherGreeting o--- ILocationService : aggregation
+
+GreetingService --up|> IGreetingService
+WeatherService --up|> IWeatherService
+LocationService --up|> ILocationService
 @enduml
