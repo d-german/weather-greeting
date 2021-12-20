@@ -24,7 +24,7 @@ WeatherGreeting o--- IGreetingService : aggregation
 WeatherGreeting o--- IWeatherService : aggregation
 WeatherGreeting o--- ILocationService : aggregation
 
-GreetingService --up|> IGreetingService
-WeatherService --up|> IWeatherService
-LocationService --up|> ILocationService
+class GreetingService implements IGreetingService
+class WeatherService implements IWeatherService
+class LocationService implements ILocationService
 @enduml
