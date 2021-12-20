@@ -1,14 +1,23 @@
 @startuml
 !theme crt-green
 
-note top of GreetingService
+note bottom of GreetingService
  Aggregation implies a relationship where the child can exist
- independently of the parent. Example: Class (parent) and Student (child).
+ independently of the parent.
+ Example: Class (parent) and Student (child).
  Delete the Class and the Students still exist.
  GreetingService can exist separate from WeatherGreeting.
 end note
 
+note right of WeatherGreeting::WeatherGreeting
+constructor injection
+end note
+
 class WeatherGreeting {
+    - _greetingService: GreetingService
+    - _weatherService: WeatherService
+    - _locationService: LocationService
+    + WeatherGreeting(GreetingService, WeatherService, LocationService)
     + TransmitGreeting(location:string, time:DateTime?) : string
 }
 
@@ -24,7 +33,7 @@ class LocationService {
 + GetLocation(location: string): MapPoint
 }
 
-WeatherGreeting o---> GreetingService
-WeatherGreeting o---> WeatherService
-WeatherGreeting o---> LocationService
+WeatherGreeting o--- GreetingService : aggregation
+WeatherGreeting o--- WeatherService : aggregation
+WeatherGreeting o--- LocationService : aggregation
 @enduml
