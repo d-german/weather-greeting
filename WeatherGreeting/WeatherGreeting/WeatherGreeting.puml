@@ -1,5 +1,13 @@
 @startuml
 !theme crt-green
+
+note top of GreetingService
+  Composition implies a relationship where the child cannot
+  exist independent of the parent.
+  Example: House (parent) and Room (child).
+  GreetingService does not exist separate from WeatherGreeting.
+end note
+
 class WeatherGreeting {
     + TransmitGreeting(location:string, time:DateTime?) : string
 }
@@ -11,7 +19,7 @@ class GreetingService {
 class WeatherService {
 + FetchWeatherData(mapPoint: MapPoint, dateTime: DateTime):WeatherData
 }
-WeatherGreeting *--> GreetingService
-WeatherGreeting *--> WeatherService
-WeatherGreeting *--> LocationService
+WeatherGreeting *---> GreetingService
+WeatherGreeting *---> WeatherService
+WeatherGreeting *---> LocationService
 @enduml
