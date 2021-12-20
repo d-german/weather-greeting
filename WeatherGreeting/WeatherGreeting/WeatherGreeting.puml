@@ -1,0 +1,18 @@
+﻿@startuml
+!theme crt-green
+
+class WeatherGreeting {
+    + TransmitGreeting(location:string, time:DateTime?) : string
+}
+
+class GreetingService {
++ TransmitGreeting(greeting: string)
+}
+
+class WeatherService {
++ FetchWeatherData(mapPoint: MapPoint, dateTime: DateTime):WeatherData
+}
+WeatherGreeting *---> GreetingService
+WeatherGreeting *---> WeatherService
+WeatherGreeting *---> LocationService
+@enduml
