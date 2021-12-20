@@ -15,9 +15,11 @@ class WeatherGreeting {
 class GreetingService {
 + TransmitGreeting(greeting: string)
 }
-
 class WeatherService {
 + FetchWeatherData(mapPoint: MapPoint, dateTime: DateTime):WeatherData
+}
+class LocationService {
++ GetLocation(location: string): MapPoint
 }
 WeatherGreeting *---> GreetingService
 WeatherGreeting *---> WeatherService
