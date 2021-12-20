@@ -5,8 +5,13 @@ class WeatherGreeting {
     - _greetingService: IGreetingService
     - _weatherService: IWeatherService
     - _locationService: ILocationService
+    + WeatherGreeting(IGreetingService, IWeatherService, ILocationService)
     + TransmitGreeting(location:string, time:DateTime?) : string
 }
+
+note right of WeatherGreeting::WeatherGreeting
+constructor injection
+end note
 
 interface IGreetingService {
 + TransmitGreeting(greeting: string)
