@@ -1,0 +1,23 @@
+﻿@startuml
+!theme crt-green
+interface IService {
++ int Operation()
+}
+
+class ServiceDecorator {
+- IService _serviceDecoratee
++ int Operation()
+}
+
+ServiceDecorator ...up|> IService
+ServiceDecorator::_serviceDecoratee o----- IService
+
+note left of ServiceDecorator::Operation
+{
+    // perform cross cutting concern
+    return _serviceDecoratee.Operation();
+}
+end note
+
+
+@enduml
