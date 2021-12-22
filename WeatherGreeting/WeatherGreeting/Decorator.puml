@@ -19,5 +19,6 @@ note left of ServiceDecorator::Operation
 }
 end note
 
+note "The ServiceDecorator both implements and\ncontains IService" as N1
 
 @enduml
