@@ -14,23 +14,23 @@ constructor injection
 end note
 
 class WeatherGreeting {
-    - _greetingService: GreetingService
-    - _weatherService: WeatherService
-    - _locationService: LocationService
-    + WeatherGreeting(GreetingService, WeatherService, LocationService)
-    + TransmitGreeting(location:string, time:DateTime?) : string
+    - readonly GreetingService _greetingService
+    - readonly WeatherService _weatherService
+    - readonly LocationService _locationService
+    + WeatherGreeting(GreetingService greetingService, WeatherService weatherService, LocationService locationService)
+    + string TransmitGreeting(string location, DateTime? time)
 }
 
 class GreetingService {
-+ TransmitGreeting(greeting: string)
++ void TransmitGreeting(string greeting)
 }
 
 class WeatherService {
-+ FetchWeatherData(mapPoint: MapPoint, dateTime: DateTime):WeatherData
++ WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
 }
 
 class LocationService {
-+ GetLocation(location: string): MapPoint
++ MapPoint GetLocation(string location)
 }
 
 WeatherGreeting o--- GreetingService : aggregation
