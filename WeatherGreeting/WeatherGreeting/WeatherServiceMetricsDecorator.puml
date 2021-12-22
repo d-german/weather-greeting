@@ -1,0 +1,54 @@
+﻿@startuml
+!theme crt-green
+
+class WeatherGreeting {
+    - readonly IGreetingService _greetingService
+    - readonly IWeatherService _weatherService
+    - readonly ILocationService _locationService
+    + WeatherGreeting(IGreetingService greetingService, IWeatherService weatherService, ILocationService locationService)
+    + string TransmitGreeting(string location, DateTime? time)
+}
+
+note right of WeatherGreeting::WeatherGreeting
+constructor injection
+end note
+
+interface IGreetingService {
++ void TransmitGreeting(string greeting)
+}
+
+interface IWeatherService {
++ WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
+}
+
+interface ILocationService {
++ MapPoint GetLocation(string location)
+}
+
+WeatherGreeting o--- IGreetingService : aggregation
+WeatherGreeting o--- IWeatherService : aggregation
+WeatherGreeting o--- ILocationService : aggregation
+
+class GreetingService implements IGreetingService
+'class WeatherService implements IWeatherService
+class LocationService implements ILocationService
+
+class WeatherServiceMetricsDecorator {
+- IWeatherService _weatherServiceDecoratee
++ int WeatherServiceRequestCount { get; private set; }
++ WeatherServiceMetricsDecorator(IWeatherService weatherServiceDecoratee)
++ WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
+}
+
+note right of WeatherServiceMetricsDecorator::WeatherServiceMetricsDecorator
+Will pass in the original concrete WeatherService
+end note
+
+note right of WeatherServiceMetricsDecorator::FetchWeatherData
+Increment WeatherServiceRequestCount and write value to the console
+Return the WeatherData from the _weatherServiceDecoratee
+end note
+
+WeatherServiceMetricsDecorator ...up|> IWeatherService
+WeatherServiceMetricsDecorator::_weatherServiceDecoratee o---- IWeatherService
+@enduml
