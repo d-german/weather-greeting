@@ -1,35 +1,39 @@
 ﻿@startuml
 !theme crt-green
 
-class WeatherGreeting {
-    - _greetingService: IGreetingService
-    - _weatherService: IWeatherService
-    - _locationService: ILocationService
-    + WeatherGreeting(IGreetingService, IWeatherService, ILocationService)
-    + TransmitGreeting(location:string, time:DateTime?) : string
-}
-
 note right of WeatherGreeting::WeatherGreeting
 constructor injection
 end note
 
+class WeatherGreeting {
+    - readonly IGreetingService _greetingService
+    - readonly IWeatherService _weatherService
+    - readonly ILocationService _locationService
+    + WeatherGreeting(IGreetingService greetingService, IWeatherService weatherService, ILocationService locationService)
+    + string TransmitGreeting(string location, DateTime? time)
+}
+
 interface IGreetingService {
-+ TransmitGreeting(greeting: string)
++ void TransmitGreeting(string greeting)
 }
 
 interface IWeatherService {
-+ FetchWeatherData(mapPoint: MapPoint, dateTime: DateTime):WeatherData
++ WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
 }
 
 interface ILocationService {
-+ GetLocation(location: string): MapPoint
++ MapPoint GetLocation(string location)
 }
 
-WeatherGreeting o--- IGreetingService : aggregation
-WeatherGreeting o--- IWeatherService : aggregation
-WeatherGreeting o--- ILocationService : aggregation
+WeatherGreeting o---> IGreetingService : aggregation
+note on link : Aggregation implies a relationship where the child can exist\nindependently of the parent.\nExample: Class (parent) and Student (child).\nDelete the Class and the Students still exist.\nGreetingService can exist separate from WeatherGreeting.
+WeatherGreeting o---> IWeatherService : aggregation
+WeatherGreeting o---> ILocationService : aggregation
 
-class GreetingService implements IGreetingService
-class WeatherService implements IWeatherService
-class LocationService implements ILocationService
+LocationService ...up|> ILocationService
+GreetingService ...up|> IGreetingService
+WeatherService ...up|> IWeatherService : implements
+
+note "The aggregation arrows are pointing\nin the opposite direction\nof the implementation arrows.\nThis is why its called dependency inversion.  " as N1
+WeatherService --right N1
 @enduml
