@@ -30,6 +30,7 @@ WeatherGreeting o--- IWeatherService : aggregation
 WeatherGreeting o--- ILocationService : aggregation
 
 class GreetingService implements IGreetingService
+WeatherService ....left|> IWeatherService
 'class WeatherService implements IWeatherService
 class LocationService implements ILocationService
 
@@ -51,4 +52,5 @@ end note
 
 WeatherServiceMetricsDecorator ...up|> IWeatherService
 WeatherServiceMetricsDecorator::_weatherServiceDecoratee o---- IWeatherService
+WeatherService ... WeatherServiceMetricsDecorator::_weatherServiceDecoratee
 @enduml
