@@ -1,7 +1,5 @@
 ﻿@startuml
 !theme crt-green
-skinparam groupInheritance 4
-
 class WeatherGreetingFacade {
     - readonly IGreetingService _greetingService
     - readonly IWeatherService _weatherService
