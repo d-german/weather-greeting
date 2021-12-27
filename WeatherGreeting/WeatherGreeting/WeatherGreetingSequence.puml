@@ -1,8 +1,8 @@
 ﻿@startuml
+!theme crt-green
 'https://plantuml.com/sequence-diagram
-
 autonumber
-
+loop do while (Console.ReadKey().Key == ConsoleKey.Enter)
 Program --> WeatherGreeting : TransmitGreeting()
 activate Program
 activate WeatherGreeting
@@ -19,7 +19,5 @@ activate IGreetingService
 deactivate IGreetingService
 deactivate WeatherGreeting
 deactivate Program
-
-
-
+end
 @enduml
