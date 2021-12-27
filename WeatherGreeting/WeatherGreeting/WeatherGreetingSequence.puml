@@ -1,0 +1,25 @@
+﻿@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+Program --> WeatherGreeting : TransmitGreeting()
+activate Program
+activate WeatherGreeting
+WeatherGreeting --> ILocationService: GetLocation(string location)
+activate ILocationService
+ILocationService --> WeatherGreeting : MapPoint
+deactivate ILocationService
+WeatherGreeting --> IWeatherService : FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
+activate IWeatherService
+IWeatherService --> WeatherGreeting : WeatherData
+deactivate IWeatherService
+WeatherGreeting --> IGreetingService: TransmitGreeting(string greeting)
+activate IGreetingService
+deactivate IGreetingService
+deactivate WeatherGreeting
+deactivate Program
+
+
+
+@enduml

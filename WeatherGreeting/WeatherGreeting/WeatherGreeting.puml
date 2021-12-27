@@ -36,4 +36,5 @@ WeatherService ...up|> IWeatherService : implements
 
 note "The aggregation arrows are pointing\nin the opposite direction\nof the implementation arrows.\nThis is why its called dependency inversion.  " as N1
 WeatherService --right N1
+
 @enduml
