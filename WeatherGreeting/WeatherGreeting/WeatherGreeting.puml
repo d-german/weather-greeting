@@ -1,0 +1,37 @@
+﻿@startuml
+!theme crt-green
+skinparam groupInheritance 4
+
+class WeatherGreetingFacade {
+    - readonly IGreetingService _greetingService
+    - readonly IWeatherService _weatherService
+    - readonly ILocationService _locationService
+    - readonly TemperatureSuggestionBase _temperatureSuggestionBase;
+    + string TransmitGreeting(string location, DateTime? time)
+}
+
+interface IGreetingService {
++ void TransmitGreeting(string greeting)
+}
+
+interface IWeatherService {
++ WeatherData FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
+}
+
+interface ILocationService {
++ MapPoint GetLocation(string location)
+}
+
+abstract class TemperatureSuggestionBase {
+public abstract string GetTemperatureSuggestion(WeatherData weatherData)
+}
+
+class TemperatureSuggestion
+
+TemperatureSuggestion --up|>TemperatureSuggestionBase
+
+WeatherGreetingFacade o----> IGreetingService
+WeatherGreetingFacade o----> IWeatherService
+WeatherGreetingFacade o----> ILocationService
+WeatherGreetingFacade o----> TemperatureSuggestionBase
+@enduml
