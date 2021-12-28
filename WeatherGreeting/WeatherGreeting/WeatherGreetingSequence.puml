@@ -3,12 +3,15 @@
 'https://plantuml.com/sequence-diagram
 autonumber
 loop do while (Console.ReadKey().Key == ConsoleKey.Enter)
+|||
 Program --> WeatherGreeting ++ : TransmitGreeting()
 WeatherGreeting --> ILocationService ++ : GetLocation(string location)
 return MapPoint
 WeatherGreeting --> IWeatherService ++ : FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
 return WeatherData
 WeatherGreeting --> IGreetingService ++ : TransmitGreeting(string greeting)
+|||
+|||
 end
 @enduml
 
