@@ -1,0 +1,22 @@
+﻿@startuml
+
+'https://plantuml.com/sequence-diagram
+autonumber
+loop do while (Console.ReadKey().Key == ConsoleKey.Enter)
+|||
+Program --> WeatherGreeting ++ : TransmitGreeting()
+WeatherGreeting --> ILocationService ++ : GetLocation(string location)
+return MapPoint
+WeatherGreeting --> IWeatherService ++ : FetchWeatherData(MapPoint mapPoint, DateTime dateTime)
+return WeatherData
+WeatherGreeting --> WeatherGreeting ++ : TimeOfDayGreeting(WeatherData weatherData)
+return string
+WeatherGreeting --> WeatherGreeting ++ : TemperatureSuggestion(WeatherData weatherData)
+return string
+WeatherGreeting --> WeatherGreeting ++ : SunscreenSuggestion(WeatherData weatherData)
+return string
+WeatherGreeting --> IGreetingService ++ : TransmitGreeting(string greeting)
+deactivate WeatherGreeting
+|||
+end
+@enduml
