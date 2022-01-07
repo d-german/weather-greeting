@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using WeatherGreeting.Services;
 using static WeatherGreeting.Constants;
 
@@ -43,13 +44,15 @@ namespace WeatherGreeting
         {
             var services = new ServiceCollection();
             services.AddSingleton<WeatherGreeting>();
+            services.AddSingleton<WeatherService>();
+            services.AddSingleton<IMemoryCache, MemoryCache>();
+            services.AddSingleton<IOptions<MemoryCacheOptions>, MemoryCacheOptions>();
             services.AddSingleton<IGreetingService, GreetingService>();
             services.AddSingleton<ILocationService, LocationService>();
             services.AddSingleton<IWeatherService>(
-                c => ActivatorUtilities.CreateInstance<WeatherServiceCacheDecorator>(c,
-                    ActivatorUtilities.CreateInstance<WeatherService>(c),
-                    ActivatorUtilities.CreateInstance<MemoryCache>(c,
-                        ActivatorUtilities.CreateInstance<MemoryCacheOptions>(c))));
+                provider => new WeatherServiceCacheDecorator(
+                provider.GetRequiredService<WeatherService>(),
+                provider.GetRequiredService<IMemoryCache>()));
 
             return services.BuildServiceProvider();
         }
